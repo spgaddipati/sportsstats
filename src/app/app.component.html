@@ -1,0 +1,56 @@
+<span class="fa fa-spinner spinner"
+      *ngIf="loading"></span>
+
+<!-- Main part of the menu-->
+<nav class='navbar navbar-expand-md navbar-dark bg-primary'>
+  <a class='navbar-brand abs'>{{pageTitle}}</a>
+</nav>
+<nav class="navbar">
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item"><a class="nav-link" [routerLink]="['/welcome']" routerLinkActive="active">Home</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="['/isr']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Leaders</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="['/isr/isr', 0, 'edit']" routerLinkActive="active">Favorites</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="['/isr']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Scores</a></li>
+    </ul>
+
+  <!-- Left justified part of the menu -->
+  <!-- <ul class="navbar-nav ml-auto">
+     <li class="nav-item"
+        *ngIf="isLoggedIn">
+      <a class="nav-link"
+         [routerLink]="['/login']">Welcome {{ userName }}</a>
+    </li>
+    <li class="nav-item"
+        *ngIf="!isMessageDisplayed">
+      <a class="nav-link"
+         (click)="displayMessages()">Show Messages</a>
+    </li>
+    <li class="nav-item"
+        *ngIf="isMessageDisplayed">
+      <a class="nav-link"
+         (click)="hideMessages()">Hide Messages</a>
+    </li>
+     <li class="nav-item"
+        *ngIf="!isLoggedIn">
+      <a class="nav-link"
+         [routerLink]="['/login']">Log In</a>
+    </li>
+    <li class="nav-item"
+        *ngIf="isLoggedIn">
+      <a class="nav-link"
+         (click)="logOut()">Log Out</a>
+    </li>
+  </ul> -->
+</nav>
+<!-- <app-nav-menu></app-nav-menu> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- <div class="col-md-2">
+      <router-outlet name="popup"></router-outlet>
+    </div> -->
+  </div>
+</div>

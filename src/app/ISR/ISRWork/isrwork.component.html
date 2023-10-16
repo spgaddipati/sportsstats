@@ -1,0 +1,204 @@
+<kendo-dialog *ngIf="active" [width]="1200" [height]="650" (close)="closeForm()">
+    <kendo-dialog-titlebar>
+      {{ isNew ? 'Add ISR ' : 'Edit ISR' }}
+    </kendo-dialog-titlebar>
+  <div class="card-body">
+    <form novalidate
+      [formGroup]="isrForm">
+      <button class="btn btn-primary mr-4"
+                      type="button"
+                      style="width:180px"
+                      [disabled]=""
+                      (click)="addwork()"
+                      >
+                Add Work
+      </button>
+      <table class='table' formArrayName="ISRWORKS">
+        <thead>
+          <tr>
+            <th>Work Order</th>
+            <th>Work Activity</th>
+            <th>Work Type</th>
+            <th>Work Performed</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr class="" [formGroupName]="workindex" *ngFor="let workorder of ISRWork.controls; let workindex=index">
+                <td>
+                  <select id="{{'wouid'+workindex}}"
+                    class="form-control"
+                    placeholder="Select Work Order"
+                    formControlName="WorkOrder">
+                    <option [ngValue]='null'>Select Work Order</option>
+                    <option *ngFor='let wo of observableWorkorders|async' value="{{wo.WorkOrder}}">{{wo.WorkOrder}}</option>
+                  </select>
+              </td>
+                <td>
+                  <select id="{{'wauid'+workindex}}"
+                    class="form-control"
+                    placeholder="Select Work Activity"
+                    formControlName="WorkActivity">
+                    <option [ngValue]="null">Select Work Activity</option>
+                    <option *ngFor='let wa of observableWorkactivities|async' value="{{wa.WorkActivity}}">{{wa.WorkActivity}}</option>
+                  </select>
+                </td>
+                <td>
+                    <select id="{{'wtuid'+workindex}}"
+                      class="form-control"
+                      placeholder="Select Work Type"
+                      formControlName="WorkType">
+                      <option [ngValue]="null">Select Work Type</option>
+                      <option Value="Analysis">Analysis</option>
+                      <option Value="Design">Design</option>
+                      <option Value="Development">Development</option>
+                      <option Value="Test">Test</option>
+                      <option Value="Implementation">Implementation</option>
+                      <option Value="Documentation">Documentation</option>
+                      <option Value="Meeting">Meeting</option>
+                      <option Value="Administration">Administration</option>
+                      <option Value="Other">Other</option>
+                    </select>
+                  </td>
+                  <td>
+                    <kendo-editor formControlName="Work" [iframe]="false" style="width:600px; height: 400px;">
+                      <kendo-toolbar>
+                        <kendo-toolbar-buttongroup>
+                          <kendo-toolbar-button kendoEditorBoldButton></kendo-toolbar-button>
+                          <kendo-toolbar-button kendoEditorItalicButton></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorUnderlineButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorStrikethroughButton
+                          ></kendo-toolbar-button>
+                        </kendo-toolbar-buttongroup>
+                        <kendo-toolbar-buttongroup>
+                          <kendo-toolbar-button
+                            kendoEditorSubscriptButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorSuperscriptButton
+                          ></kendo-toolbar-button>
+                        </kendo-toolbar-buttongroup>
+                        <kendo-toolbar-buttongroup>
+                          <kendo-toolbar-button
+                            kendoEditorAlignLeftButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorAlignCenterButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorAlignRightButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorAlignJustifyButton
+                          ></kendo-toolbar-button>
+                        </kendo-toolbar-buttongroup>
+                        <kendo-toolbar-dropdownlist
+                          kendoEditorFormat
+                        ></kendo-toolbar-dropdownlist>
+                        <kendo-toolbar-dropdownlist
+                          kendoEditorFontSize
+                        ></kendo-toolbar-dropdownlist>
+                        <kendo-toolbar-dropdownlist
+                          kendoEditorFontFamily
+                        ></kendo-toolbar-dropdownlist>
+                        <kendo-toolbar-colorpicker
+                          kendoEditorForeColor
+                        ></kendo-toolbar-colorpicker>
+                        <kendo-toolbar-colorpicker
+                          kendoEditorBackColor
+                          view="gradient"
+                        ></kendo-toolbar-colorpicker>
+                        <kendo-toolbar-buttongroup>
+                          <kendo-toolbar-button
+                            kendoEditorInsertUnorderedListButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorInsertOrderedListButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button kendoEditorIndentButton></kendo-toolbar-button>
+                          <kendo-toolbar-button kendoEditorOutdentButton></kendo-toolbar-button>
+                        </kendo-toolbar-buttongroup>
+                        <kendo-toolbar-button
+                          kendoEditorBlockquoteButton
+                        ></kendo-toolbar-button>
+                        <kendo-toolbar-button kendoEditorSelectAllButton></kendo-toolbar-button>
+                        <kendo-toolbar-buttongroup>
+                          <kendo-toolbar-button kendoEditorUndoButton></kendo-toolbar-button>
+                          <kendo-toolbar-button kendoEditorRedoButton></kendo-toolbar-button>
+                        </kendo-toolbar-buttongroup>
+                        <kendo-toolbar-buttongroup>
+                          <kendo-toolbar-button
+                            kendoEditorCreateLinkButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button kendoEditorUnlinkButton></kendo-toolbar-button>
+                        </kendo-toolbar-buttongroup>
+                        <kendo-toolbar-button
+                          kendoEditorInsertFileButton
+                        ></kendo-toolbar-button>
+                        <kendo-toolbar-button
+                          kendoEditorInsertImageButton
+                        ></kendo-toolbar-button>
+                        <kendo-toolbar-button
+                          kendoEditorViewSourceButton
+                        ></kendo-toolbar-button>
+                        <kendo-toolbar-button
+                          kendoEditorCleanFormattingButton
+                        ></kendo-toolbar-button>
+                        <kendo-editor-insert-table-button></kendo-editor-insert-table-button>
+                        <kendo-toolbar-buttongroup>
+                          <kendo-toolbar-button
+                            kendoEditorAddColumnBeforeButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorAddColumnAfterButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorAddRowBeforeButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorAddRowAfterButton
+                          ></kendo-toolbar-button>
+                        </kendo-toolbar-buttongroup>
+                        <kendo-toolbar-buttongroup>
+                          <kendo-toolbar-button
+                            kendoEditorDeleteColumnButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorDeleteRowButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorDeleteTableButton
+                          ></kendo-toolbar-button>
+                        </kendo-toolbar-buttongroup>
+                        <kendo-toolbar-buttongroup>
+                          <kendo-toolbar-button
+                            kendoEditorMergeCellsButton
+                          ></kendo-toolbar-button>
+                          <kendo-toolbar-button
+                            kendoEditorSplitCellButton
+                          ></kendo-toolbar-button>
+                        </kendo-toolbar-buttongroup>
+                        <kendo-toolbar-button kendoEditorPrintButton></kendo-toolbar-button>
+                      </kendo-toolbar>
+                    </kendo-editor>
+
+                  </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </form>
+  </div>
+<kendo-dialog-actions>
+    <button class="k-button" (click)="onCancel($event)">Cancel</button>
+    <button class="k-button k-primary" [disabled]="!isrForm.valid" (click)="onSave($event)">Save</button>
+</kendo-dialog-actions>
+
+  <!-- <br>Dirty: {{ isrForm.dirty }}
+  <br>Touched: {{ isrForm.touched }}
+  <br>Form Valid: {{ isrForm.valid }}
+
+  <br>Value: {{ isrForm.value | json }} -->
+</kendo-dialog>

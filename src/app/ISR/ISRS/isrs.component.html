@@ -1,0 +1,35 @@
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle}}
+  </div>
+</div>
+<div class='card-body'  [formGroup]="profileForm">
+    <kendo-dropdownlist id="'wouid'"
+    [data]="observableWorkorders|async"
+    [textField]="'WorkOrder'"
+    [valueField]="'WorkOrder'"
+    [defaultItem]="placeHolderwo"
+    [valuePrimitive]="true"
+    (valueChange)="CWISRStatusByWO($event)"
+    formControlName="workorder">
+  </kendo-dropdownlist>
+    <button (click)="ViewISRs()">View ISRs</button>
+<kendo-grid
+  #grid="kendoGrid"
+  [data]="obscurweekisrs|async"
+  (add)="addHandler($event)"
+>
+  <kendo-grid-column field="Resource" title="Resource Name" [width]="200" format="{0:c}">
+  </kendo-grid-column>
+  <kendo-grid-column field="Status" title="Status" [width]="200" format="{0:c}">
+  </kendo-grid-column>
+</kendo-grid>
+<app-view-isrs [isNew]="isNew" [wsrid]="editDataItemID"
+          (save)="saveHandler($event)"
+          (cancel)="cancelHandler()">
+</app-view-isrs>
+</div>
+<div *ngIf='errorMessage'
+     class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>

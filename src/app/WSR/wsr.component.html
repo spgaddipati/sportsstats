@@ -1,0 +1,47 @@
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle}}
+  </div>
+</div>
+<div class='card-body'  [formGroup]="profileForm">
+    <!-- <kendo-dropdownlist id="'wouid'"
+    [data]="observableWorkorders|async"
+    [textField]="'WorkOrder'"
+    [valueField]="'id'"
+    [defaultItem]="{ WorkOrder: 'Select Work Order', id: null }"
+    [valuePrimitive]="true"
+    formControlName="workorder">
+    </kendo-dropdownlist>
+    <button (click)="ViewWSRs()">View WSR</button>
+    <button (click)="ViewISRs()">View ISR</button> -->
+<kendo-grid
+  #grid="kendoGrid"
+  [data]="observableWSRStatus | async"
+  (add)="addHandler($event)"
+  (edit)="editHandler($event)"
+>
+  <kendo-grid-column field="WORKORDER" title="Work Order" [width]="200" format="{0:c}">
+  </kendo-grid-column>
+  <kendo-grid-column field="WEEKENDDATE" title="Weekend Date" [width]="200" format="{0:c}">
+  </kendo-grid-column>
+  <kendo-grid-column field="WSRSTATUS" title="Status" [width]="200" format="{0:c}">
+  </kendo-grid-column>
+  <kendo-grid-command-column title="Action" [width]="350">
+    <ng-template kendoGridCellTemplate>
+      <button kendoGridEditCommand [primary]="true">View WSR</button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>
+<app-view-wsrs [isNew]="isNew" [wsrid]="editDataItemID" *ngIf="viewwsrs"
+          (save)="saveHandler($event)"
+          (cancel)="cancelHandler()">
+</app-view-wsrs>
+<!-- <app-view-isrs [isNew]="isNew" [wsrid]="editDataItemID" *ngIf="viewisrs"
+          (save)="saveHandler($event)"
+          (cancel)="cancelHandler()">
+</app-view-isrs> -->
+</div>
+<div *ngIf='errorMessage'
+     class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>

@@ -1,0 +1,81 @@
+<kendo-dialog *ngIf="active" [width]="1000" [height]="850" (close)="closeForm()">
+    <kendo-dialog-titlebar>
+      {{ isNew ? 'Add WSR ' : 'View WSR for Work Order 7.51-204' }}
+    </kendo-dialog-titlebar>
+  <div class="card-body">
+    <form novalidate
+      [formGroup]="wsrForm">
+      <table class='table' formArrayName="WSRWORK">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Work Activity</th>
+            <th>Work Type</th>
+            <th>Work Performed</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr class="" [formGroupName]="workindex" *ngFor="let workorder of WSRWork.controls; let workindex=index">
+                <td><button kendoButton [icon]="'delete'" (click)="removework(workindex)"></button></td>
+                <td>
+                  <kendo-dropdownlist id="{{'wauid'+workindex}}"
+                    [data]="observableWorkactivities|async"
+                    [textField]="'WorkActivity'"
+                    [valueField]="'WorkActivity'"
+                    [defaultItem]="placeHolderwa"
+                    [valuePrimitive]="true"
+                    [disabled]="true"
+                    style="width: 70px;"
+                    formControlName="WORKACTIVITYUID">
+                  </kendo-dropdownlist>
+                </td>
+                <td>
+                    <kendo-dropdownlist id="{{'wtuid'+workindex}}"
+                    [data]="worktypes"
+                    [textField]="'text'"
+                    [valueField]="'text'"
+                    [defaultItem]="{ text: 'Select Worktype', value: null }"
+                    [valuePrimitive]="true"
+                    [disabled]="true"
+                    style="width: 140px;"
+                      formControlName="WORKTYPE">
+                    </kendo-dropdownlist>
+                  </td>
+                  <td>
+                    <kendo-editor formControlName="Work" [iframe]="false" style="width:600px; height: 600px;">
+                        <kendo-toolbar>
+                            <!-- <kendo-toolbar-buttongroup>
+                              <kendo-toolbar-button kendoEditorUndoButton></kendo-toolbar-button>
+                              <kendo-toolbar-button kendoEditorRedoButton></kendo-toolbar-button>
+                            </kendo-toolbar-buttongroup> -->
+                            <kendo-toolbar-buttongroup>
+                              <kendo-toolbar-button kendoEditorBoldButton></kendo-toolbar-button>
+                              <kendo-toolbar-button kendoEditorItalicButton></kendo-toolbar-button>
+                              <kendo-toolbar-button kendoEditorUnderlineButton></kendo-toolbar-button>
+                            </kendo-toolbar-buttongroup>
+                            <kendo-toolbar-buttongroup>
+                              <kendo-toolbar-button kendoEditorInsertUnorderedListButton></kendo-toolbar-button>
+                              <kendo-toolbar-button kendoEditorInsertOrderedListButton></kendo-toolbar-button>
+                              <kendo-toolbar-button kendoEditorIndentButton></kendo-toolbar-button>
+                              <kendo-toolbar-button kendoEditorOutdentButton></kendo-toolbar-button>
+                            </kendo-toolbar-buttongroup>
+                        </kendo-toolbar>
+                    </kendo-editor>
+                  </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </form>
+  </div>
+<kendo-dialog-actions>
+    <button class="k-button" (click)="onCancel($event)">Cancel</button>
+    <button class="k-button k-primary" [disabled]="!wsrForm.valid" (click)="onSave($event)">Save</button>
+</kendo-dialog-actions>
+
+  <!-- <br>Dirty: {{ wsrForm.dirty }}
+  <br>Touched: {{ wsrForm.touched }}
+  <br>Form Valid: {{ wsrForm.valid }}
+
+  <br>Value: {{ wsrForm.value | json }} -->
+</kendo-dialog>

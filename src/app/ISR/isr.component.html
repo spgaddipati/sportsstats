@@ -1,0 +1,51 @@
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle}}
+  </div>
+</div>
+ <div class='card-body'>
+
+    <div class='card-body' *ngIf="obsresinfo | async as resinfo">
+      <table class="table mb-0">
+        <tr>
+          <th>Name</th>
+          <th>Work Order</th>
+          <th>Work Activity</th>
+        </tr>
+        <tr>
+            <td>{{resinfo[0].NAME}}</td>
+            <td>{{resinfo[0].WORKORDER}}</td>
+            <td>{{resinfo[0].WORKACTIVITY}}</td>
+          </tr>
+      </table>
+
+</div>
+
+<kendo-grid
+  #grid="kendoGrid"
+  [data]="observableisrs|async"
+  (edit)="editHandler($event)"
+  (add)="addHandler($event)"
+>
+  <ng-template kendoGridToolbarTemplate>
+      <button kendoGridAddCommand>Add ISR</button>
+  </ng-template>
+  <kendo-grid-column field="WeekendDate" title="Weekend Date" format="{0:c}">
+  </kendo-grid-column>
+  <kendo-grid-column field="status" title="Status"  format="{0:c}">
+  </kendo-grid-column>
+  <kendo-grid-command-column title="Action">
+    <ng-template kendoGridCellTemplate>
+      <button kendoGridEditCommand [primary]="true">Edit</button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>
+<app-add-isr [isNew]="isNew" [isrid]="editDataItemID"
+          (save)="saveHandler($event)"
+          (cancel)="cancelHandler()">
+</app-add-isr>
+</div>
+<div *ngIf='errorMessage'
+     class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>
