@@ -2,25 +2,87 @@
       *ngIf="loading"></span>
 
 <!-- Main part of the menu-->
-<nav class='navbar navbar-expand-md navbar-dark bg-primary'>
-  <a class='navbar-brand abs'>{{pageTitle}}</a>
-</nav>
-<nav class="navbar">
-  <ul class="nav nav-pills nav-fill">
-    <li class="nav-item"><a class="nav-link" [routerLink]="['/welcome']" routerLinkActive="active">Home</a></li>
-    <li class="nav-item"><a class="nav-link" [routerLink]="['/isr']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Leaders</a></li>
-    <li class="nav-item"><a class="nav-link" [routerLink]="['/isr/isr', 0, 'edit']" routerLinkActive="active">Favorites</a></li>
-    <li class="nav-item"><a class="nav-link" [routerLink]="['/isr']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Scores</a></li>
-    </ul>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
 
+      <div class = "text-center">
+        <h5 ><a class="navbar-brand" [routerLink]="['/welcome']" routerLinkActive="active">{{pageTitle}}</a></h5>
+      </div>
+      <div class="navbar-collapse collapse" id="collapseNavbar">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="" data-bs-target="#myModal" data-bs-toggle="modal">Settings</a>
+          </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="" data-bs-target="#myModal" data-bs-toggle="modal">Account</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+
+ <!-- <nav class="navbar"> -->
+  <!-- <ul class="nav nav-pills"> -->
+    <!-- <li class="nav-item"><a class="nav-link" [routerLink]="['/welcome']" routerLinkActive="active">Home</a></li> -->
+      <!-- <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Leaders</a></li> -->
+      <!-- <li class="nav-item"><a class="nav-link" routerLinkActive="active">Favorites</a></li> -->
+      <!-- <li class="nav-item"><a class="nav-link" [routerLink]="['/isr/isr', 0, 'edit']" routerLinkActive="active">Favorites</a></li> -->
+     <!-- <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Compare</a></li> -->
+
+  <!-- </ul> -->
+  <!--<div class="col-sm-3 col-md-3 pull-right">
+     <form class="navbar-form" role="search">
+      <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg></button>
+            </div>
+      </div>
+    </form>-->
+    <!-- <mat-form-field class="example-full-width">
+      <input matInput placeholder="Search Movie" [(ngModel)]="selectedMovie" [matAutocomplete]="auto"
+        [formControl]="searchMoviesCtrl" placeholder="Min 3 Characters Ex. Ant">
+      <button *ngIf="selectedMovie" matSuffix mat-icon-button aria-label="Clear" (click)="clearSelection()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-autocomplete [panelWidth]="400" #auto="matAutocomplete" (optionSelected)="onSelected()"
+        [displayWith]="displayWith">
+        <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+        <ng-container *ngIf="!isLoading">
+          <mat-option *ngFor="let movie of filteredMovies" [value]="movie">
+            <span><b>{{movie.Title}}</b> ({{movie.Year}})</span>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br>
+    <ng-container *ngIf="errorMsg; else elseTemplate">
+      {{errorMsg}}
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="movie-details" *ngIf="selectedMovie?.Title">
+        <div>
+          <img [src]="selectedMovie?.Poster" style="height: 250px;" />
+        </div>
+        <div>
+          <h3>Selected Value: {{selectedMovie?.Title}}</h3>
+          <ul>
+            <li>Year: {{selectedMovie?.Year}}</li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
+  </div>-->
   <!-- Left justified part of the menu -->
-  <!-- <ul class="navbar-nav ml-auto">
-     <li class="nav-item"
-        *ngIf="isLoggedIn">
+   <!--<ul class="navbar-nav ml-auto">
+     <li class="nav-item">
       <a class="nav-link"
-         [routerLink]="['/login']">Welcome {{ userName }}</a>
+         [routerLink]="['/login']">Welcome Siva</a>
     </li>
-    <li class="nav-item"
+     <li class="nav-item"
         *ngIf="!isMessageDisplayed">
       <a class="nav-link"
          (click)="displayMessages()">Show Messages</a>
@@ -40,17 +102,18 @@
       <a class="nav-link"
          (click)="logOut()">Log Out</a>
     </li>
-  </ul> -->
-</nav>
+  </ul>-->
+<!-- </nav> -->
 <!-- <app-nav-menu></app-nav-menu> -->
-<div class="container">
+<pm-star></pm-star>
+<!-- <div class="container"> -->
   <div class="row">
-    <div class="col-md-10">
-      <router-outlet></router-outlet>
+    <!-- <div class="col-md-4"> -->
+      <router-outlet ></router-outlet>
     </div>
 
     <!-- <div class="col-md-2">
       <router-outlet name="popup"></router-outlet>
     </div> -->
-  </div>
-</div>
+  <!-- </div> -->
+<!-- </div> -->

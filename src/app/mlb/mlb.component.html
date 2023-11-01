@@ -1,0 +1,18 @@
+<div class="row">
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
+    <div   *ngFor="let team of mlbTeams; let i=index">
+      <div class='card border-dark'>
+        <!-- <a href="/mlb"> -->
+        <!-- <div class="card-header"> -->
+        <!-- </div> -->
+        <div class="card-body ">
+            <h5 class="card-title text-left border-info">{{ team.name_display_full }}</h5>
+            <!-- <p class="card-text text-left">City: {{ team.city }}<p> -->
+            <!-- <p class="card-text text-left">Venue: {{ team.venue_name }}</p> -->
+        </div>
+      <!-- </a> -->
+      </div>
+    </div>
+  </div>
+</div>

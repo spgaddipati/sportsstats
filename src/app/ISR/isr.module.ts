@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes,RouterModule } from '@angular/router';
+//import { Routes,RouterModule } from '@angular/router';
 import { ISRComponent } from './isr.component';
 import { ISRSComponent } from './ISRS/isrs.component';
 import { ISRSWORKComponent} from './ISRS/ISRSWork/isrswork.component'
@@ -12,10 +12,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { EditorModule } from '@progress/kendo-angular-editor';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-const routes: Routes = [
-  { path: '', component: ISRComponent },
-  { path: 'isrs', component: ISRSComponent }
-];
+//const routes: Routes = [
+  //{ path: '', component: ISRComponent },
+  //{ path: 'isrs', component: ISRSComponent }
+//];
 
 @NgModule({
   imports: [
@@ -25,9 +25,7 @@ const routes: Routes = [
     EditorModule,
     DropDownsModule,
     PDFModule,
-    RouterModule.forChild(
-      routes
-    ),
+    //RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule
   ],

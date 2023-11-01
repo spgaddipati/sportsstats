@@ -4,10 +4,22 @@ import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { SelectiveStrategy } from './selective-strategy.service';
 const routes: Routes = [
-  { path: 'welcome', component: WelcomeComponent },
+  { data: { Title:"Welcome" }, path: 'welcome', component: WelcomeComponent },
+  {
+    path: 'mlb',
+    data: { preload: false,title:"MLB" },
+    loadChildren: () =>
+      import('./mlb/mlb.module').then(m => m.MlbModule)
+  },
+  {
+    path: 'nfl',
+    data: { preload: false,title:"NFL" },
+    loadChildren: () =>
+      import('./nfl/nfl.module').then(m => m.NflModule)
+  },
   {
     path: 'isr',
-    data: { preload: false },
+    data: { preload: false,title:"ISR" },
     loadChildren: () =>
       import('./ISR/isr.module').then(m => m.ISRModule)
   },

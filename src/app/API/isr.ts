@@ -31,9 +31,17 @@ export class ISR {
   ISRUID: number = 0;
   UserPIN: string
   WeekendDate: string;
-  status: string;  
+  status: string;
   ISRWORKS:ISRWORK[]
-} 
+}
+
+export class MLBTeams {
+  sport_id: number = 0;
+  name_display_full: string;
+  venue_name: string
+  city: string;
+  franchise_code: string;
+}
 
 export class ISRWORK{
   id:number =0;
@@ -49,7 +57,7 @@ export class WSR {
   WeekendDate: string;
   workorderid:number;
   WorkOrder: string;
-  status: string;  
+  status: string;
   WSRWORKS:WSRWORK[]
 }
 export class WSRWORK{

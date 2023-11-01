@@ -1,12 +1,44 @@
-<div class="crop"
-     [style.width.px]="starWidth"
-     [title]="rating"
-     (click)="onClick()">
-  <div style="width: 75px">
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
+<nav *ngIf="shownav" class="navbar">
+  <ul class="nav nav-pills">
+    <li class="nav-item"><a class="nav-link" [routerLink]="cururl" routerLinkActive="active">Home</a></li>
+    <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Leaders</a></li>
+    <li class="nav-item"><a class="nav-link" routerLinkActive="active">Favorites</a></li>
+    <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Compare</a></li>
+  </ul>
+
+  <div class="col-sm-3 col-md-3 pull-right">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Search Movie" [(ngModel)]="selectedMovie" [matAutocomplete]="auto"
+        [formControl]="searchMoviesCtrl" placeholder="Min 3 Characters Ex. Ant">
+      <button *ngIf="selectedMovie" matSuffix mat-icon-button aria-label="Clear" (click)="clearSelection()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-autocomplete [panelWidth]="400" #auto="matAutocomplete" (optionSelected)="onSelected()"
+        [displayWith]="displayWith">
+        <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+        <ng-container *ngIf="!isLoading">
+          <mat-option *ngFor="let movie of filteredMovies" [value]="movie">
+            <span><b>{{movie.Title}}</b> ({{movie.Year}})</span>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+    <!-- <br>
+    <ng-container *ngIf="errorMsg; else elseTemplate">
+      {{errorMsg}}
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="movie-details" *ngIf="selectedMovie?.Title">
+        <div>
+          <img [src]="selectedMovie?.Poster" style="height: 250px;" />
+        </div>
+        <div>
+          <h3>Selected Value: {{selectedMovie?.Title}}</h3>
+          <ul>
+            <li>Year: {{selectedMovie?.Year}}</li>
+          </ul>
+        </div>
+      </div>
+    </ng-template> -->
   </div>
-</div>
+</nav>
