@@ -4,4 +4,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # web Page
 
-[Sports Stats (https://sports-stats.azurewebsites.net)]
+[Sports Stats] (https://sports-stats.azurewebsites.net)
