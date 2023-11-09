@@ -18,7 +18,7 @@ export class StarComponent implements OnChanges, OnInit {
   isLoading = false;
   errorMsg!: string;
   minLengthTerm = 3;
-  selectedMovie: any = "";
+  selectedItem: any = "";
   cururl:string;
   shownav:boolean = true;
   pageTitle = 'Sports Stats';
@@ -31,8 +31,8 @@ export class StarComponent implements OnChanges, OnInit {
      });
     }
     onSelected() {
-      this.selectedMovie = this.selectedMovie;
-      this.router.navigateByUrl(this.cururl+"/" + this.selectedMovie.Title)
+      this.selectedItem = this.selectedItem;
+      this.router.navigateByUrl(this.cururl+"/" + this.selectedItem.Title)
     }
 
     displayWith(value: any) {
@@ -40,7 +40,7 @@ export class StarComponent implements OnChanges, OnInit {
     }
 
     clearSelection() {
-      this.selectedMovie = "";
+      this.selectedItem = "";
       this.filteredMovies = [];
     }
     ngOnInit() {

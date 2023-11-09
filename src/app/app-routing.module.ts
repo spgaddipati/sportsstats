@@ -7,7 +7,6 @@ const routes: Routes = [
   { data: { Title:"Welcome" }, path: 'welcome', component: WelcomeComponent },
   {
     path: 'mlb',
-    data: { preload: false,title:"MLB" },
     loadChildren: () =>
       import('./mlb/mlb.module').then(m => m.MlbModule)
   },

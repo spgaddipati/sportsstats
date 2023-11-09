@@ -8,13 +8,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-const routes: Routes = [
-  { path: '', component: MlbComponent },
+import { LeadersComponent } from './leaders/leaders.component';
+ const routes: Routes = [
+  { path: 'home', component: MlbComponent},
+  { path: 'leaders', component: LeadersComponent}
 ];
 
 @NgModule({
   declarations: [
-    MlbComponent
+    MlbComponent,
+    LeadersComponent
   ],
   imports: [
     CommonModule,
@@ -24,9 +27,7 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatAutocompleteModule,
-    RouterModule.forChild(
-      routes
-    ),
+    RouterModule.forChild(routes),
   ]
 })
 export class MlbModule { }

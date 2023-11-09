@@ -1,16 +1,16 @@
 <nav *ngIf="shownav" class="navbar">
   <ul class="nav nav-pills">
-    <li class="nav-item"><a class="nav-link" [routerLink]="cururl" routerLinkActive="active">Home</a></li>
-    <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Leaders</a></li>
-    <li class="nav-item"><a class="nav-link" routerLinkActive="active">Favorites</a></li>
-    <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Compare</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="cururl+'/home'" routerLinkActive="active">Home</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="cururl+'/leaders'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Leaders</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="cururl+'/favorites'" routerLinkActive="active">Favorites</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="cururl+'/compare'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">Compare</a></li>
   </ul>
 
-  <div class="col-sm-3 col-md-3 pull-right">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Search Movie" [(ngModel)]="selectedMovie" [matAutocomplete]="auto"
-        [formControl]="searchMoviesCtrl" placeholder="Min 3 Characters Ex. Ant">
-      <button *ngIf="selectedMovie" matSuffix mat-icon-button aria-label="Clear" (click)="clearSelection()">
+  <div class="col-sm-2">
+    <mat-form-field >
+      <input matInput placeholder="Search" [(ngModel)]="selectedItem" [matAutocomplete]="auto"
+        [formControl]="searchMoviesCtrl">
+      <button *ngIf="selectedItem" matSuffix mat-icon-button aria-label="Clear" (click)="clearSelection()">
         <mat-icon>close</mat-icon>
       </button>
       <mat-autocomplete [panelWidth]="400" #auto="matAutocomplete" (optionSelected)="onSelected()"
@@ -23,22 +23,5 @@
         </ng-container>
       </mat-autocomplete>
     </mat-form-field>
-    <!-- <br>
-    <ng-container *ngIf="errorMsg; else elseTemplate">
-      {{errorMsg}}
-    </ng-container>
-    <ng-template #elseTemplate>
-      <div class="movie-details" *ngIf="selectedMovie?.Title">
-        <div>
-          <img [src]="selectedMovie?.Poster" style="height: 250px;" />
-        </div>
-        <div>
-          <h3>Selected Value: {{selectedMovie?.Title}}</h3>
-          <ul>
-            <li>Year: {{selectedMovie?.Year}}</li>
-          </ul>
-        </div>
-      </div>
-    </ng-template> -->
   </div>
 </nav>
